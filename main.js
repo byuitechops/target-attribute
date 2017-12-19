@@ -36,17 +36,16 @@ module.exports = (course, stepCallback) => {
                     });
                     course.success(
                         'target-attribute',
-                        `All external links in the "${courseName}" course have been made to open in a new tab`
+                        `${file.name} | "${link.attribs.href}" has been made to open in a new tab`
                     );
                 }
             }
         });
     });
 
-    var courseName = course.info.fileName.split('.zip')[0];
     course.success(
         'target-attribute',
-        `All external links in the "${courseName}" course have been made to open in a new tab`
+        `All external links have been made to open in a new tab`
     );
     stepCallback(null, course);
 };
