@@ -4,45 +4,24 @@
 const tap = require('tap');
 
 function g1Tests(course, callback) {
-    // Tap tests for Gauntlet 1 go here
-    tap.pass('Success! Wheee! 1');
-    // tap.fail('YOLO');
-    callback(null, course);
-}
+    var hrefs = course.info['Changed Link Target Attributes'].map(link => link.href);
 
-function g2Tests(course, callback) {
-    // Tap tests for Gauntlet 2 go here
-    tap.pass('Success! Wheee! 2');
-    callback(null, course);
-}
+    tap.equal(course.info['Changed Link Target Attributes'][0].name, 'Target Attribute #1.html');
+    tap.equal(course.info['Changed Link Target Attributes'][0].href, 'https://www.lds.org/?lang=eng');
 
-function g3Tests(course, callback) {
-    // Tap tests for Gauntlet 3 go here
-    tap.pass('Success! Wheee! 3');
-    callback(null, course);
-}
+    tap.equal(hrefs.includes('https://www.lds.org/?lang=eng'), true);
+    tap.equal(hrefs.includes('https://www.youtube.com/watch?time_continue=1&amp;v=P_VRN7hcL_8'), true);
+    tap.equal(hrefs.includes('https://outlook.live.com/owa/'), true);
+    tap.equal(hrefs.includes('http://www.node-tap.org/basics/'), true);
+    tap.equal(hrefs.includes('byui.brightspace.com'), false);
+    tap.equal(hrefs.includes('pathway.brightspace.com'), false);
 
-function g4Tests(course, callback) {
-    // Tap tests for Gauntlet 4 go here
-    tap.pass('Success! Wheee! 4');
     callback(null, course);
 }
 
 module.exports = [
-        {
-            gauntlet: 1,
-            tests: g1Tests
-        },
-        {
-            gauntlet: 2,
-            tests: g2Tests
-        },
-        {
-            gauntlet: 3,
-            tests: g3Tests
-        },
-        {
-            gauntlet: 4,
-            tests: g4Tests
+    {
+        gauntlet: 1,
+        tests: g1Tests
         },
 ];
