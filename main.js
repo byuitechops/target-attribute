@@ -17,30 +17,32 @@ module.exports = (course, stepCallback) => {
         // #2 -- using cheerio, get all the links (<a ...>) that are in the course
         var $ = file.dom;
         var links = $('a').get();
-        // #3 -- using cheerio, filter out all the external links
-        links = links.filter(function (element, index) {
-            return ($(element).attr('href').includes('http') ||
-                    $(element).attr('href').includes('www')) &&
-                !$(element).attr('href').includes('byui.brightspace') &&
-                !$(element).attr('href').includes('pathway.brightspace');
-        });
-        // #4 -- check out all the target attributes, -->
-        links.forEach(function (link) {
-            if (link.attribs.target) {
-                if (link.attribs.target !== '_blank') {
-                    // --> and assign them to "_blank" if needed
-                    link.attribs.target = '_blank';
-                    course.info['Changed Link Target Attributes'].push({
-                        name: file.name,
-                        href: link.attribs.href
-                    });
-                    course.success(
-                        'target-attribute',
-                        `${file.name} | "${link.attribs.href}" has been made to open in a new tab`
-                    );
+        if (links.length != 0) {
+            // #3 -- using cheerio, filter out all the external links
+            links = links.filter(function (element, index) {
+                return ($(element).attr('href').includes('http') ||
+                        $(element).attr('href').includes('www')) &&
+                    !$(element).attr('href').includes('byui.brightspace') &&
+                    !$(element).attr('href').includes('pathway.brightspace');
+            });
+            // #4 -- check out all the target attributes, -->
+            links.forEach(function (link) {
+                if (link.attribs.target) {
+                    if (link.attribs.target !== '_blank') {
+                        // --> and assign them to "_blank" if needed
+                        link.attribs.target = '_blank';
+                        course.info['Changed Link Target Attributes'].push({
+                            name: file.name,
+                            href: link.attribs.href
+                        });
+                        course.success(
+                            'target-attribute',
+                            `${file.name} | "${link.attribs.href}" has been made to open in a new tab`
+                        );
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
     course.success(
