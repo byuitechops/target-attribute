@@ -20,10 +20,15 @@ module.exports = (course, stepCallback) => {
         if (links.length != 0) {
             // #3 -- using cheerio, filter out all the external links
             links = links.filter(function (element, index) {
-                return ($(element).attr('href').includes('http') ||
+                if ($(element).attr('href')) {
+                    return ($(element).attr('href').includes('http') ||
                         $(element).attr('href').includes('www')) &&
-                    !$(element).attr('href').includes('byui.brightspace') &&
-                    !$(element).attr('href').includes('pathway.brightspace');
+                        !$(element).attr('href').includes('byui.brightspace') &&
+                        !$(element).attr('href').includes('pathway.brightspace');
+                } else {
+                    return false;
+                }
+                
             });
             // #4 -- check out all the target attributes, -->
             links.forEach(function (link) {
