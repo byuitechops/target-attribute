@@ -3,9 +3,7 @@
     "version": "1.0.0",
     "description": "Check all html files and make sure all external links are made target='_blank'",
     "main": "main.js",
-    "dependencies": {
-        "canvas-wrapper": "github:byuitechops/canvas-wrapper"
-    },
+    "dependencies": {},
     "devDependencies": {
         "async": "^2.6.0",
         "child-development-kit": "github:byuitechops/child-development-kit",
