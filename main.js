@@ -1,7 +1,7 @@
-/*eslint-env node, es6*/
-
-/* The module checks all html files for external links <a href="!...buyi.edu..." and makes sure
-   the all open in the new widow (target="_blank") */
+/* 
+    The module checks all html files for external links <a href="!...buyi.edu..." 
+    and makes sure they all open in the new widow (target="_blank") 
+*/
 
 module.exports = (course, stepCallback) => {
     /* Create the module report so that we can access it later as needed.

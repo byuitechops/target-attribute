@@ -1,6 +1,6 @@
 # Target Attribute
 ### *Package Name*: target-attribute
-### *Child Type*: pre import
+### *Child Type*: pre-import
 ### *Platform*: all
 ### *Required*: Optional
 
