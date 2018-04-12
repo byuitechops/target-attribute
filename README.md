@@ -12,19 +12,35 @@ The module makes sure that all the external links of the course open in a new wi
 
 ## How to Install
 
-npm install target-attribute
+```
+Set CANVAS_API_TOKEN=10706~vXrrAZ24w3zWLqviu25tTkKjozI32IgqolFW4pVpcPiI81pFIkpkEHaynrc646km
+```
+```
+npm install set-syllabus
+```
+```
+npm start update
+```
 
 ## Run Requirements
 
-n/a
+course.info
+
+course.log
+
+course.message
 
 ## Options
 
-n/a
+???
 
 ## Outputs
 
-The course object with all the external links adjusted to open in a new window
+The course object with all the external links adjusted to open in a new window:
+link.attribs.target = '_blank';
+course.info['Changed Link Target Attributes'].push({
+                            name: file.name,
+                            href: link.attribs.href});
 
 ## Process
 
@@ -37,10 +53,10 @@ Describe in steps how the module accomplishes its goals.
 
 ## Log Categories
 
-List the categories used in logging data in your module.
-
-course.message('All external links have been made to open in a new tab');
-
+course.log('External links set to open in a new Tab', 
+                           { 'File Name': file.name,
+                            'Href': link.attribs.href });
+                            
 ## Requirements
 
 The module checks all html files for external links <a href="!...buyi.edu..." and makes sure they all open in the new widow (target="_blank") 
